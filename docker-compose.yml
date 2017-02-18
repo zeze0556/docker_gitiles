@@ -1,0 +1,11 @@
+version: '3'
+services:
+  gitiles:
+    restart: always
+    image: gitiles
+    volumes:
+      - /home/android/aosp:/git/repo
+      - ./gitiles.config:/git/gitiles.config
+    ports:
+      - "8015:8080"
+
