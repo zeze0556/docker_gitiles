@@ -15,6 +15,22 @@ docker run --rm -v REPO_DIR:/git/repo -p 8080:8080 gitiles
 docker-compose up
 ```
 
+nginx反向代理例子
+···
+location / {
+                proxy_pass http://aosp;
+                if ($http_user_agent ~ "(git)") {
+                        proxy_pass http://aosp_git;
+                }
+                proxy_set_header   Host             $http_host;
+                proxy_set_header   X-Real-IP        $remote_addr;
+                proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+                proxy_set_header   X-Forwarded-Proto $scheme;
+
+        }
+
+···
+
 通过浏览器 http://localhost:8080即可访问
 
 - gitiles镜像默认的仓库目录为/git/repo中
