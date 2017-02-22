@@ -4,8 +4,19 @@ services:
     restart: always
     image: gitiles
     volumes:
-      - /home/android/aosp:/git/repo
+      - /home/android/aosp/:/git/repo
       - ./gitiles.config:/git/gitiles.config
     ports:
       - "8015:8080"
+
+  nginx:
+    restart: always
+    image: nginxforgit
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - /home/android/aosp/:/home/git
+    ports:
+      - "8016:80"
+
+
 

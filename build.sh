@@ -3,7 +3,7 @@
 BAZEL_RELEASE_VER=0.4.4
 
 
-mkdir build
+mkdir -p build
 
 cd build
 
@@ -31,8 +31,16 @@ function gitiles() {
     cd build
 }
 
+function nginxforgit() {
+    cd ../
+    docker build -f nginxforgit.dockerfile -t nginxforgit .
+    cd build
+}
+
 bazel
 
 gitiles
+
+nginxforgit
 
 cd ..
