@@ -16,7 +16,7 @@ docker-compose up
 ```
 
 nginx反向代理例子
-···
+```
 location / {
                 proxy_pass http://aosp;
                 if ($http_user_agent ~ "(git)") {
@@ -29,7 +29,7 @@ location / {
 
         }
 
-···
+```
 
 通过浏览器 http://localhost:8080即可访问
 
